@@ -1,6 +1,3 @@
-using FluentAssertions;
-using Moq;
-
 namespace ShoppingCartAPI.Tests;
 
 public class ShoppingCartServiceShould
@@ -41,6 +38,5 @@ public class ShoppingCartServiceShould
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
         actualProductCart.Products.Should().ContainEquivalentOf(icebergDto);
-
     }
 }
