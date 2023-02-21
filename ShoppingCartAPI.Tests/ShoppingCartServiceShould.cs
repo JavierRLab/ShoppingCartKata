@@ -1,10 +1,9 @@
 using FluentAssertions;
-
 namespace ShoppingCartAPI.Tests;
 
-public class AcceptanceTests
+public class ShoppingCartServiceShould
 {
-    [Fact(DisplayName = "As customer I want to see my shipping empty cart")]
+    [Fact(DisplayName = "Create empty shopping cart")]
     public void EmptyCart()
     {
         ShoppingCartService shoppingCartService = new();

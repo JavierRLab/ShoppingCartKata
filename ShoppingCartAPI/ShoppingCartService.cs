@@ -2,8 +2,10 @@
 
 public class ShoppingCartService
 {
-    public ShoppingCartList getShoppingCart()
+    private readonly ShoppingCart _shoppingCart = new();
+
+    public ShoppingCart GetShoppingCart()
     {
-        throw new NotImplementedException();
+        return _shoppingCart;
     }
 }
