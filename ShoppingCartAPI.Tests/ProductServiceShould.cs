@@ -15,4 +15,15 @@ public class ProductServiceShould
         var actualProduct = productService.GetProduct("Iceberg");
         actualProduct.Should().BeEquivalentTo(icebergDto);
     }
+
+    [Fact(DisplayName = "Product not found")]
+    public void ProductNotFound()
+    {
+        var productRepository = new Mock<IProductRepository>();
+        var productService = new ProductService(productRepository.Object);
+        Assert.Throws<ArgumentException>(() => productService.GetProduct("Milk"));
+
+
+
+    }
 }
