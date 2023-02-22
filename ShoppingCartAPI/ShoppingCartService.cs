@@ -25,8 +25,10 @@ public class ShoppingCartService
 
 public class ShoppingCart
 {
-    public readonly List<ProductDTO> Products = new();
-    public string Promotion = String.Empty;
-    public int TotalProducts = 0;
-    public int TotalPrice = 0;
+    public List<ProductDTO> Products { get; }
+    public ShoppingCart()
+    {
+        Products = new();
+    }
+
 }

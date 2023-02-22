@@ -2,8 +2,8 @@ namespace ShoppingCartAPI;
 
 public class ProductDTO
 {
-    public string Name;
-    public string Price;
+    public string Name { get; }
+    public string Price { get; }
 
     public ProductDTO(string name, string price)
     {

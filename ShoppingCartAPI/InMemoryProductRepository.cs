@@ -1,4 +1,4 @@
-namespace ShoppingCartAPI.Tests;
+namespace ShoppingCartAPI;
 
 public class InMemoryProductRepository : IProductRepository
 {
