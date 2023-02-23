@@ -2,7 +2,7 @@ namespace ShoppingCartAPI;
 
 public class InMemoryProductRepository : IProductRepository
 {
-    private Dictionary<string, Product> _products = new Dictionary<string, Product>();
+    private Dictionary<string, Product> _products = new();
 
     public InMemoryProductRepository()
     {

@@ -18,17 +18,6 @@ public class ShoppingCartService
     public void Add(string productName)
     {
         var product = _productService.GetProduct(productName);
-        _shoppingCart.Products.Add(product);
+        _shoppingCart.Add(product);
     }
-}
-
-
-public class ShoppingCart
-{
-    public List<ProductDTO> Products { get; }
-    public ShoppingCart()
-    {
-        Products = new();
-    }
-
 }

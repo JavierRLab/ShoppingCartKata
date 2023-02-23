@@ -1,6 +1,6 @@
 namespace ShoppingCartAPI;
 
-public class ProductDTO
+public record ProductDTO
 {
     public string Name { get; }
     public string Price { get; }
