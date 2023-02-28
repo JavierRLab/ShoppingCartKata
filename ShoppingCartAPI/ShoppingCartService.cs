@@ -1,4 +1,6 @@
-﻿namespace ShoppingCartAPI;
+﻿using System.Globalization;
+
+namespace ShoppingCartAPI;
 
 public class ShoppingCartService
 {
@@ -18,6 +20,20 @@ public class ShoppingCartService
     public void Add(string productName)
     {
         var product = _productService.GetProduct(productName);
-        _shoppingCart.Add(product);
+        
+        ++_shoppingCart.TotalQuantity;
+        
+        double productPrice = double.Parse(product.Price.Split(" ")[0], CultureInfo.InvariantCulture);
+        double currentTotalPrice = double.Parse(_shoppingCart.TotalPrice.Split(" ")[0], CultureInfo.InvariantCulture);
+        double totalPrice = currentTotalPrice + productPrice;
+        _shoppingCart.TotalPrice = Convert.ToString(totalPrice).Replace(',', '.') + " €";
+        
+        if (_shoppingCart.ProductsQuantity.TryGetValue(product, out _))
+        {
+            ++_shoppingCart.ProductsQuantity[product];
+            return;
+        }
+
+        _shoppingCart.ProductsQuantity.Add(product, 1);
     }
 }
