@@ -2,38 +2,38 @@
 
 namespace ShoppingCartAPI;
 
-public class ShoppingCartService
+public class ShoppingCartService : IShoppingCartService
 {
     private IProductService _productService;
-    private readonly ShoppingCart _shoppingCart = new();
+    private readonly ShoppingCartDTO _shoppingCartDto = new();
 
     public ShoppingCartService(IProductService productService)
     {
         _productService = productService;
     }
 
-    public ShoppingCart GetShoppingCart()
+    public ShoppingCartDTO GetShoppingCart()
     {
-        return _shoppingCart;
+        return _shoppingCartDto;
     }
 
     public void Add(string productName)
     {
         var product = _productService.GetProduct(productName);
         
-        ++_shoppingCart.TotalQuantity;
+        ++_shoppingCartDto.TotalQuantity;
         
         double productPrice = double.Parse(product.Price.Split(" ")[0], CultureInfo.InvariantCulture);
-        double currentTotalPrice = double.Parse(_shoppingCart.TotalPrice.Split(" ")[0], CultureInfo.InvariantCulture);
+        double currentTotalPrice = double.Parse(_shoppingCartDto.TotalPrice.Split(" ")[0], CultureInfo.InvariantCulture);
         double totalPrice = currentTotalPrice + productPrice;
-        _shoppingCart.TotalPrice = Convert.ToString(totalPrice).Replace(',', '.') + " €";
+        _shoppingCartDto.TotalPrice = Convert.ToString(totalPrice).Replace(',', '.') + " €";
         
-        if (_shoppingCart.ProductsQuantity.TryGetValue(product, out _))
+        if (_shoppingCartDto.ProductsQuantity.TryGetValue(product, out _))
         {
-            ++_shoppingCart.ProductsQuantity[product];
+            ++_shoppingCartDto.ProductsQuantity[product];
             return;
         }
 
-        _shoppingCart.ProductsQuantity.Add(product, 1);
+        _shoppingCartDto.ProductsQuantity.Add(product, 1);
     }
 }

@@ -15,9 +15,9 @@ public class ShoppingCartServiceShould
     [Fact(DisplayName = "Create empty shopping cart")]
     public void EmptyCart()
     {
-        ShoppingCart actualEmptyCart = _shoppingCartService.GetShoppingCart();
+        ShoppingCartDTO actualEmptyCartDto = _shoppingCartService.GetShoppingCart();
 
-        actualEmptyCart.Should().BeEquivalentTo(new ShoppingCart());
+        actualEmptyCartDto.Should().BeEquivalentTo(new ShoppingCartDTO());
     }
     
     [Fact(DisplayName = "Verify that ProductService GetProduct was invoked")]

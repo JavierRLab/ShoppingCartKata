@@ -1,33 +1,36 @@
+using ShoppingCartAPI.Data;
+using ShoppingCartAPI.Services;
+
 namespace ShoppingCartAPI.Tests;
 
 public class AcceptanceTests
 {
     private readonly IProductRepository _productRepository = new InMemoryProductRepository();
-    private readonly IProductService _productService;
-    private readonly ShoppingCartService _shoppingCartService;
+    private readonly IShoppingCartRepository _shoppingCartRepository = new InMemoryShoppingCartRepository();
+    private readonly IShoppingCartService _shoppingCartService;
 
     public AcceptanceTests()
     {
-        _productService = new ProductService(_productRepository);
-        _shoppingCartService = new ShoppingCartService(_productService);
+        _shoppingCartService = new ShoppingCartService2(_shoppingCartRepository);
     }
     
     [Fact(DisplayName = "As customer I want to see my shipping empty cart")]
     public void EmptyCart()
     {
         var actualEmptyCart = _shoppingCartService.GetShoppingCart();
-        actualEmptyCart.Should().BeEquivalentTo(new ShoppingCart());
+        actualEmptyCart.Should().BeEquivalentTo(new ShoppingCartDTO());
     }
     
     [Fact(DisplayName = "Add product to shopping card")]
     public void AddProductToCart()
     {
-        var icebergDto = new ProductDTO("Iceberg", "2.17 €");
-        
         _shoppingCartService.Add("Iceberg");
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
-        actualProductCart.ProductsQuantity[icebergDto].Should().Be(1);
+        
+        actualProductCart.CartItems.Count().Should().Be(1);
+        actualProductCart.TotalQuantity.Should().Be(1);
+        actualProductCart.TotalPrice.Should().Be("2.17 €");
     }
     
     [Fact(DisplayName = "Add 2 similar products to shopping card")]
@@ -64,5 +67,13 @@ public class AcceptanceTests
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
         actualProductCart.TotalPrice.Should().Be("6.17 €");
+    }
+}
+
+internal class InMemoryShoppingCartRepository : IShoppingCartRepository
+{
+    public ShoppingCart? GetById(int id)
+    {
+        throw new NotImplementedException();
     }
 }

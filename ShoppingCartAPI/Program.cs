@@ -9,7 +9,7 @@ builder.Services.AddDbContext<ProductContext>(options =>
     options.UseNpgsql("Host=localhost;Username=postgres;Password=5432;Database=postgres"));
 builder.Services.AddScoped<IProductRepository, ProductEntityRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ShoppingCartService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 
 var app = builder.Build();
 
