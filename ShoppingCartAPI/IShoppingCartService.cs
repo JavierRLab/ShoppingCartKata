@@ -24,7 +24,6 @@ public class ShoppingCartService2 : IShoppingCartService
 
     public void Add(string productName)
     {
-        var shoppingCart = _shoppingCartRepository.GetById(1);
-        shoppingCart?.AddProduct(productName);
+        _shoppingCartRepository.AddProduct(1, productName);
     }
 }

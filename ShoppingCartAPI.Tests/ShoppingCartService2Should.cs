@@ -25,8 +25,7 @@ public class ShoppingCartService2Should
 
         _shoppingCartService.Add("Iceberg");
         
-        _shoppingCartRepo.Verify(m => m.GetById(1));
-        shoppingCart.Verify(m => m.AddProduct("Iceberg"));
+        _shoppingCartRepo.Verify(m => m.AddProduct(1, "Iceberg"));
         
     }
 }

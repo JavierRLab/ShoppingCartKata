@@ -2,8 +2,6 @@
 
 public class ShoppingCart
 {
-    public virtual void AddProduct(string iceberg)
-    {
-        throw new NotImplementedException();
-    }
+    public int Id { get; set; }
+    public ICollection<ShoppingCartProduct>? ShoppingCartProducts { get; set; }
 }

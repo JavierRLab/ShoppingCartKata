@@ -24,7 +24,6 @@ app.CreateDbIfNotExists();
 app.MapGet("/", () => "Hello World!");
 app.MapPost("/add-item", (ShoppingCartService shoppingCartService, ItemRequest request) =>
 {
-    
     shoppingCartService.Add(request.ProductName);
     return $"Item {request.ProductName} added";
 });
@@ -38,4 +37,7 @@ app.MapGet("/shopping-cart", (ShoppingCartService shoppingCartService) =>
 
 app.Run();
 
-public record ItemRequest(string ProductName);
+namespace ShoppingCartAPI
+{
+    public record ItemRequest(string ProductName);
+}

@@ -1,4 +1,3 @@
-using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Services;
 
 namespace ShoppingCartAPI.Tests;
@@ -67,13 +66,5 @@ public class AcceptanceTests
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
         actualProductCart.TotalPrice.Should().Be("6.17 €");
-    }
-}
-
-internal class InMemoryShoppingCartRepository : IShoppingCartRepository
-{
-    public ShoppingCart? GetById(int id)
-    {
-        throw new NotImplementedException();
     }
 }
