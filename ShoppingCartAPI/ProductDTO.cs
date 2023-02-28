@@ -1,13 +1,3 @@
 namespace ShoppingCartAPI;
 
-public record ProductDTO
-{
-    public string Name { get; }
-    public string Price { get; }
-
-    public ProductDTO(string name, string price)
-    {
-        Name = name;
-        Price = price;
-    }
-}
+public record ProductDTO(string Name, string Price);

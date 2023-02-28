@@ -1,3 +1,5 @@
+using ShoppingCartAPI.Data;
+
 namespace ShoppingCartAPI.Tests;
 
 public class ProductServiceShould
@@ -9,8 +11,8 @@ public class ProductServiceShould
         var productService = new ProductService(productRepository.Object);
         var icebergDto = new ProductDTO("Iceberg", "2.17 €");
 
-        productRepository.Setup(mock => mock.GetProduct("Iceberg"))
-            .Returns(new Product("Iceberg", 1.55, 0.15, 0.21));
+        productRepository.Setup(mock => mock.GetByName("Iceberg"))
+            .Returns(new Product(1,"Iceberg", 1.55, 0.15, 0.21));
         
         var actualProduct = productService.GetProduct("Iceberg");
         actualProduct.Should().BeEquivalentTo(icebergDto);

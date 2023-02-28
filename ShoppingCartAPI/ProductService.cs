@@ -1,3 +1,5 @@
+using ShoppingCartAPI.Data;
+
 namespace ShoppingCartAPI;
 
 public class ProductService : IProductService
@@ -11,7 +13,7 @@ public class ProductService : IProductService
 
     public ProductDTO GetProduct(string productName)
     {
-        var product = _productRepository.GetProduct(productName);
+        var product = _productRepository.GetByName(productName);
         if (product is null)
             throw new ArgumentException($"Product {productName} doesn't exist");
         
