@@ -49,4 +49,9 @@ public class InMemoryShoppingCartRepository : IShoppingCartRepository
             _fakeShoppingCart.ShoppingCartProducts.Add(scp);
         }
     }
+
+    public IEnumerable<ShoppingCartProduct>? GetShoppingCartProducts(int shoppingCartId)
+    {
+        return _fakeShoppingCart.ShoppingCartProducts;
+    }
 }

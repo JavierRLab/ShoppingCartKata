@@ -27,7 +27,7 @@ public class AcceptanceTests
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
         
-        actualProductCart.CartItems.Count().Should().Be(1);
+        actualProductCart.ShoppingCartProducts.Count().Should().Be(1);
         actualProductCart.TotalQuantity.Should().Be(1);
         actualProductCart.TotalPrice.Should().Be("2.17 €");
     }

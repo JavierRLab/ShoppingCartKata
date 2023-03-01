@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShoppingCartAPI.Data;
 
-public sealed class ShoppingCartProduct
+public class ShoppingCartProduct
 {
     [Key, Column(Order = 0)]
     public int ShoppingCartId { get; set; }

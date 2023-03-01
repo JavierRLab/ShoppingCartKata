@@ -24,4 +24,11 @@ public class Product
         Revenue = revenue;
         Tax = tax;
     }
+
+    public double CalculateFinalPrice()
+    {
+        
+        var pricePerUnit = Math.Round(Cost * (Revenue + 1), 2, MidpointRounding.ToPositiveInfinity);
+        return Math.Round(pricePerUnit * (Tax + 1), 2, MidpointRounding.ToPositiveInfinity);
+    }
 }
