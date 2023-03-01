@@ -5,9 +5,9 @@ using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ProductContext>(options =>
+builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseNpgsql("Host=localhost;Username=postgres;Password=5432;Database=postgres"));
-builder.Services.AddScoped<IProductRepository, ProductEntityRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartEntityRepository>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService2>();
 
 var app = builder.Build();

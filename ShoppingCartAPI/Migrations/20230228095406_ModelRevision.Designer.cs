@@ -10,7 +10,7 @@ using ShoppingCartAPI.Data;
 
 namespace ShoppingCartAPI.Migrations
 {
-    [DbContext(typeof(ProductContext))]
+    [DbContext(typeof(MyDbContext))]
     [Migration("20230228095406_ModelRevision")]
     partial class ModelRevision
     {

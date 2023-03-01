@@ -2,7 +2,7 @@
 
 public static class DbInitializer
 {
-    public static void Initialize(ProductContext context)
+    public static void Initialize(MyDbContext context)
     {
         if (context.Products.Any())
         {

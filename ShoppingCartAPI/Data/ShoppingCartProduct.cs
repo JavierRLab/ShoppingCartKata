@@ -5,6 +5,7 @@ namespace ShoppingCartAPI.Data;
 
 public class ShoppingCartProduct
 {
+
     [Key, Column(Order = 0)]
     public int ShoppingCartId { get; set; }
     [Key, Column(Order = 1)]
@@ -13,5 +14,5 @@ public class ShoppingCartProduct
     public ShoppingCart? ShoppingCart { get; set; }
     public Product? Product { get; set; }
 
-    public int Quantity { get; set; } = 1;
+    public int Quantity { get; set; }
 }

@@ -9,7 +9,7 @@ using ShoppingCartAPI.Data;
 
 namespace ShoppingCartAPI.Migrations
 {
-    [DbContext(typeof(ProductContext))]
+    [DbContext(typeof(MyDbContext))]
     partial class ProductContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

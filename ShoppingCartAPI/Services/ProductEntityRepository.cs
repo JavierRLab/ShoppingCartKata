@@ -5,9 +5,9 @@ namespace ShoppingCartAPI.Services;
 
 public class ProductEntityRepository : IProductRepository
 {
-    private readonly ProductContext _context;
+    private readonly MyDbContext _context;
 
-    public ProductEntityRepository(ProductContext context)
+    public ProductEntityRepository(MyDbContext context)
     {
         _context = context;
     }

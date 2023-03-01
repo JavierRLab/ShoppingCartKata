@@ -1,3 +1,4 @@
+using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Services;
 
 namespace ShoppingCartAPI.Tests;
@@ -17,7 +18,7 @@ public class AcceptanceTests
     public void EmptyCart()
     {
         var actualEmptyCart = _shoppingCartService.GetShoppingCart();
-        actualEmptyCart.Should().BeEquivalentTo(new ShoppingCartDTO());
+        actualEmptyCart.Should().BeEquivalentTo(new ShoppingCartDTO(Enumerable.Empty<ShoppingCartProduct>()));
     }
     
     [Fact(DisplayName = "Add product to shopping card")]
@@ -27,7 +28,7 @@ public class AcceptanceTests
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
         
-        actualProductCart.ShoppingCartProducts.Count().Should().Be(1);
+        actualProductCart.ShoppingCartProducts!.Count().Should().Be(1);
         actualProductCart.TotalQuantity.Should().Be(1);
         actualProductCart.TotalPrice.Should().Be("2.17 €");
     }
