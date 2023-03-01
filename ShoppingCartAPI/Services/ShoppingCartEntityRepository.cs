@@ -55,6 +55,7 @@ public class ShoppingCartEntityRepository : IShoppingCartRepository
             .Where(scp => scp.ShoppingCartId == shoppingCartId)
             .Include(scp => scp.Product)
             .AsNoTracking()
+            
             .ToList();
     }
 }

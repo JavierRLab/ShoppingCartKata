@@ -1,12 +1,17 @@
+using System.Configuration;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCartAPI;
 using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options =>
-    options.UseNpgsql("Host=localhost;Username=postgres;Password=5432;Database=postgres"));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DbConnectionString");
+    options.UseNpgsql(connectionString);
+});
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartEntityRepository>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService2>();
 
