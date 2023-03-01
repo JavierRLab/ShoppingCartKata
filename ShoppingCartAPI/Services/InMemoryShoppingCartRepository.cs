@@ -44,7 +44,8 @@ public class InMemoryShoppingCartRepository : IShoppingCartRepository
         {
             var scp = new ShoppingCartProduct
             {
-                Product = productToAdd
+                Product = productToAdd,
+                Quantity = 1
             };
             _fakeShoppingCart.ShoppingCartProducts.Add(scp);
         }
