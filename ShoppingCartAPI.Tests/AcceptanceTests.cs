@@ -35,8 +35,6 @@ public class AcceptanceTests
     [Fact(DisplayName = "Add 2 similar products to shopping card")]
     public void Add2SimilarProductsToCart()
     {
-        var icebergDto = new ProductDTO("Iceberg", "2.17 €");
-        
         _shoppingCartService.Add("Iceberg");
         _shoppingCartService.Add("Iceberg");
 

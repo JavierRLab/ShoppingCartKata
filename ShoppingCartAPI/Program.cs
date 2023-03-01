@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ProductContext>(options =>
     options.UseNpgsql("Host=localhost;Username=postgres;Password=5432;Database=postgres"));
 builder.Services.AddScoped<IProductRepository, ProductEntityRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService2>();
 
 var app = builder.Build();
 
@@ -22,13 +21,13 @@ app.CreateDbIfNotExists();
 // var shoppingCartService = new ShoppingCartService(productService);
 
 app.MapGet("/", () => "Hello World!");
-app.MapPost("/add-item", (ShoppingCartService shoppingCartService, ItemRequest request) =>
+app.MapPost("/add-item", (ShoppingCartService2 shoppingCartService, ItemRequest request) =>
 {
     shoppingCartService.Add(request.ProductName);
     return $"Item {request.ProductName} added";
 });
 
-app.MapGet("/shopping-cart", (ShoppingCartService shoppingCartService) =>
+app.MapGet("/shopping-cart", (ShoppingCartService2 shoppingCartService) =>
 {
     var shoppingCart = shoppingCartService.GetShoppingCart();
     var options = new JsonSerializerOptions { WriteIndented = true };

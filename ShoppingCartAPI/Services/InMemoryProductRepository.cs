@@ -1,6 +1,6 @@
 using ShoppingCartAPI.Data;
 
-namespace ShoppingCartAPI;
+namespace ShoppingCartAPI.Services;
 
 public class InMemoryProductRepository : IProductRepository
 {
