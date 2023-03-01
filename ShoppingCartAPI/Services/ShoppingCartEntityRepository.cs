@@ -39,8 +39,8 @@ public class ShoppingCartEntityRepository : IShoppingCartRepository
             shoppingCartProductToAdd = new ShoppingCartProduct{
                 ProductId = productToAdd.Id,
                 ShoppingCartId = shoppingCartId,
-                Product = productToAdd,
-                ShoppingCart = shoppingCartToUpdate
+                // Product = productToAdd,
+                // ShoppingCart = shoppingCartToUpdate
             };
             _context.ShoppingCartProducts.Add(shoppingCartProductToAdd);
         } 
@@ -52,6 +52,8 @@ public class ShoppingCartEntityRepository : IShoppingCartRepository
     public IEnumerable<ShoppingCartProduct> GetShoppingCartProducts(int shoppingCartId)
     {
         return _context.ShoppingCartProducts
+            .Where(scp => scp.ShoppingCartId == shoppingCartId)
+            .Include(scp => scp.Product)
             .AsNoTracking()
             .ToList();
     }

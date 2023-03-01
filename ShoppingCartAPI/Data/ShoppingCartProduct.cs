@@ -1,16 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ShoppingCartAPI.Data;
 
 public class ShoppingCartProduct
 {
 
-    [Key, Column(Order = 0)]
+    [JsonIgnore]
     public int ShoppingCartId { get; set; }
-    [Key, Column(Order = 1)]
+    [JsonIgnore]
     public int ProductId { get; set; }
-    
+    [JsonIgnore]
     public ShoppingCart? ShoppingCart { get; set; }
     public Product? Product { get; set; }
 

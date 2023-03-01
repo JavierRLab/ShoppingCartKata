@@ -8,14 +8,26 @@ namespace ShoppingCartAPI.Data;
 public class Product
 {
 
+    [JsonIgnore]
     public int Id { get; set; }
     
     [Required]
     [MaxLength(100)]
     public string Name { get; set; }
+    
+    [JsonIgnore]
     public double Cost{ get; set; }
+    
+    [JsonIgnore]
     public double Revenue{ get; set; }
+    
+    [JsonIgnore]
     public double Tax{ get; set; }
+    
+    [JsonIgnore]
+    public ICollection<ShoppingCartProduct>? ShoppingCartProducts { get; set; }
+
+    public double FinalPrice => CalculateFinalPrice();
     public Product(int id, string name, double cost, double revenue, double tax)
     {
         Id = id;

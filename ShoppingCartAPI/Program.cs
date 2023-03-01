@@ -21,13 +21,13 @@ app.CreateDbIfNotExists();
 // var shoppingCartService = new ShoppingCartService(productService);
 
 app.MapGet("/", () => "Hello World!");
-app.MapPost("/add-item", (ShoppingCartService2 shoppingCartService, ItemRequest request) =>
+app.MapPost("/add-item", (IShoppingCartService shoppingCartService, ItemRequest request) =>
 {
     shoppingCartService.Add(request.ProductName);
     return $"Item {request.ProductName} added";
 });
 
-app.MapGet("/shopping-cart", (ShoppingCartService2 shoppingCartService) =>
+app.MapGet("/shopping-cart", (IShoppingCartService shoppingCartService) =>
 {
     var shoppingCart = shoppingCartService.GetShoppingCart();
     var options = new JsonSerializerOptions { WriteIndented = true };
