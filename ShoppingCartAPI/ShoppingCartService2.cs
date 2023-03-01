@@ -1,4 +1,4 @@
-﻿using ShoppingCartAPI.Data;
+﻿using System.Globalization;
 using ShoppingCartAPI.Services;
 
 namespace ShoppingCartAPI;
@@ -21,15 +21,23 @@ public class ShoppingCartService2 : IShoppingCartService
 
         shoppingCartDto.ShoppingCartProducts = shoppingCartProducts;
 
+        double totalPrice = 0;
+        
         foreach (var spc in shoppingCartProducts)
         {
-            double finalPrice = spc.Product.CalculateFinalPrice();
-            
+            totalPrice += spc.Product!.CalculateFinalPrice() * spc.Quantity;
+
             shoppingCartDto.TotalQuantity += spc.Quantity;
         }
         
-        
+        shoppingCartDto.TotalPrice = PriceToString(totalPrice);
+
         return shoppingCartDto;
+    }
+
+    private static string PriceToString(double totalPrice)
+    {
+        return Convert.ToString(totalPrice, CultureInfo.InvariantCulture).Replace(',', '.') + " €";
     }
 
     public void Add(string productName)

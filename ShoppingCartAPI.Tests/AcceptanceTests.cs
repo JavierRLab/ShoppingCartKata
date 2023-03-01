@@ -42,7 +42,9 @@ public class AcceptanceTests
 
 
         var actualProductCart = _shoppingCartService.GetShoppingCart();
-        actualProductCart.ProductsQuantity[icebergDto].Should().Be(2);
+        actualProductCart.ShoppingCartProducts!.Count().Should().Be(1);
+        actualProductCart.TotalQuantity.Should().Be(2);
+        actualProductCart.TotalPrice.Should().Be("4.34 €");
     }
     
     [Fact(DisplayName = "Add 2 similar and 1 different products to shopping card")]
