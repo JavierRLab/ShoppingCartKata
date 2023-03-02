@@ -1,13 +1,20 @@
+using System.Collections.Immutable;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCartAPI;
 using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Services;
 
+var configurationBuilder = new ConfigurationBuilder();
+configurationBuilder.AddEnvironmentVariables();
+var config = configurationBuilder.Build();
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("MyDbConnectionString");
+    var connectionString =
+        $"Host={config["RDS_HOSTNAME"]};Username={config["RDS_USERNAME"]};Password={config["RDS_PASSWORD"]};Database={config["RDS_DB_NAME"]};";
+    if(builder.Environment.IsDevelopment())
+        connectionString = builder.Configuration.GetConnectionString("MyDbConnectionString");
     options.UseNpgsql(connectionString);
 });
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartEntityRepository>();
